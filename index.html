@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Temperature Converter</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+        }
+
+        #converter {
+            margin: 20px auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+            width: 300px;
+        }
+
+        h1 {
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+
+        input[type="text"] {
+            width: 100%;
+            padding: 5px;
+            margin-bottom: 10px;
+        }
+
+        select {
+            width: 100%;
+            padding: 5px;
+            margin-bottom: 10px;
+        }
+
+        button {
+            padding: 10px 20px;
+            background-color: #007BFF;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div id="converter">
+        <h1>Temperature Converter</h1>
+        <input type="text" id="temperatureInput" placeholder="Enter temperature">
+        <select id="fromUnit">
+            <option value="celsius">Celsius</option>
+            <option value="fahrenheit">Fahrenheit</option>
+            <option value="kelvin">Kelvin</option>
+        </select>
+        <button onclick="convertTemperature()">Convert</button>
+        <p><span id="result"></span></p>
+    </div>
+
+    <script>
+        function convertTemperature() {
+            var inputTemperature = parseFloat(document.getElementById("temperatureInput").value);
+            var fromUnit = document.getElementById("fromUnit").value;
+            var result = document.getElementById("result");
+
+            if (fromUnit === "celsius") {
+                result.textContent = `${inputTemperature}°C is equal to ${celsiusToFahrenheit(inputTemperature)}°F and ${celsiusToKelvin(inputTemperature)} K`;
+            } else if (fromUnit === "fahrenheit") {
+                result.textContent = `${inputTemperature}°F is equal to ${fahrenheitToCelsius(inputTemperature)}°C and ${fahrenheitToKelvin(inputTemperature)} K`;
+            } else if (fromUnit === "kelvin") {
+                result.textContent = `${inputTemperature} K is equal to ${kelvinToCelsius(inputTemperature)}°C and ${kelvinToFahrenheit(inputTemperature)}°F`;
+            }
+        }
+
+        function celsiusToFahrenheit(celsius) {
+            return (celsius * 9/5) + 32;
+        }
+
+        function celsiusToKelvin(celsius) {
+            return celsius + 273.15;
+        }
+
+        function fahrenheitToCelsius(fahrenheit) {
+            return (fahrenheit - 32) * 5/9;
+        }
+
+        function fahrenheitToKelvin(fahrenheit) {
+            return (fahrenheit - 32) * 5/9 + 273.15;
+        }
+
+        function kelvinToCelsius(kelvin) {
+            return kelvin - 273.15;
+        }
+
+        function kelvinToFahrenheit(kelvin) {
+            return (kelvin - 273.15) * 9/5 + 32;
+        }
+    </script>
+</body>
+</html>
